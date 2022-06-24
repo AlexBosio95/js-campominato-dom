@@ -10,16 +10,10 @@
 
 
 
+const arrayBombe = [];
+
 // Prendo il bottone
 const btnPlay = document.querySelector('#btn-play');
-
-// Prendo selettore difficoltà
-const difficultySel = document.querySelector('#sel-difficulty');
-
-// Prendo gli elementi
-const difficultyElementSel = document.querySelectorAll('#sel-difficulty option');
-
-console.log(difficultyElementSel);
 
 
 // Prendo il contenitore dei box
@@ -29,27 +23,57 @@ const gridContainer = document.querySelector('.container .grid-container');
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
 
-    resetGrid(gridContainer);
+    // Reset del container
+    gridContainer.innerHTML = '';
 
-        for (let i = 1; i < 101; i++) {
-            const newBox = makeBox();
-            newBox.classList.add('box', 'text-white', 'd-flex', 'justify-content-center', 'align-items-center')
+    // Prendo selettore difficoltà
+    const difficultySel = parseInt(document.querySelector('#sel-difficulty').value);
 
-            newBox.innerHTML = i;
+    console.log(difficultySel)
 
-            gridContainer.append(newBox);
-                // click sul box
-                clikElement(newBox, i);
+    // variabile numero di celle
+    let numberCell;
+
+    // variabile numero di righe
+    let rowForCell;
+
+
+    switch (difficultySel) {
+        case 0:
+        default:
+            numberCell = 100;
+            rowForCell = 10;
+            break;
+
+        case 1:
+            numberCell = 81;
+            rowForCell = 9;
+            break;
+
+        case 2:
+             numberCell = 49;
+             rowForCell = 7;
+             break;
+    }
+
+    for (let i = 0; i < numberCell; i++) {
+        const newBox = makeBox();
+        newBox.classList.add('box', 'text-white', 'd-flex', 'justify-content-center', 'align-items-center')
+
+        if (difficultySel == 1){
+            newBox.classList.add('box-st')
+        } else if (difficultySel == 2){
+            newBox.classList.add('box-h')
         }
 
+        newBox.innerHTML = i + 1;
+
+        gridContainer.append(newBox);
+        // click sul box
+        clikElement(newBox, i + 1);
+    }
+
 })
-
-// Funzione crea grid
-function resetGrid(parent){
-    parent.innerHTML = ''
-
-}
-
 
 
 // Funzione che crea un box
@@ -64,4 +88,10 @@ function clikElement(htmlElement, index) {
         htmlElement.classList.toggle('box-click')
         console.log(index)
     })
+}
+
+// funzione generazione numero
+function numGenerator(array, min, max) {
+    array = Math.floor(Math.random() * (max - min) + min);
+    return array;
 }

@@ -23,17 +23,19 @@
 
 <body>
 
-    <header class="">
-        <div class="row h-100 align-items-center">
-
-            <div class="col-6">
+    <header class="container">
+        <div class="row h-100 align-items-center row-cols-2 ">
+            <div class="col text-center">
                 <h1 class="m-3">Grid Game</h1>
             </div>
 
-            <div class="col-6">
-                    <div class="col">
-                            <button id="btn-play" class="btn btn-primary">Play Game</button> 
-                    </div>
+            <div class="col text-center">
+                <button id="btn-play" class="btn btn-primary">Play Game</button> 
+                <select name="cars" id="sel-difficulty">
+                    <option value="0">Easy</option>
+                    <option value="1">Standard</option>
+                    <option value="2">Hard</option>
+                  </select>
             </div>
         </div>
 
