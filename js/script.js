@@ -145,7 +145,17 @@ function makeBox() {
 // funzione generazione numero in array
 function numGenerator(array, min, max, arraypoint) {
     let numberGen;
-    numberGen = Math.floor(Math.random() * ((max + 1) - min) + min);
-    array.push(numberGen);
-    arraypoint.push(numberGen);
+    let isValid = false;
+
+    while(isValid == false){
+
+        numberGen = Math.floor(Math.random() * ((max + 1) - min) + min);
+
+        if (array.includes(numberGen) == false){
+            array.push(numberGen);
+            arraypoint.push(numberGen);
+            isValid = true
+        } 
+    }
+
 }
