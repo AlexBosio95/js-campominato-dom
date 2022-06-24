@@ -10,7 +10,7 @@
 
 
 
-const arrayBombe = [];
+
 
 // Prendo il bottone
 const btnPlay = document.querySelector('#btn-play');
@@ -19,11 +19,25 @@ const btnPlay = document.querySelector('#btn-play');
 // Prendo il contenitore dei box
 const gridContainer = document.querySelector('.container .grid-container');
 
-// risultato
-let result = 0;
+// Prendo il tag dove scrivere il risultato
+const resultUser = document.getElementById('risultato');
+
 
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
+
+    const numeriClick = [];
+
+    const arrayBombe = [];
+
+
+    resultUser.innerHTML = '';
+
+    // risultato
+    let result = 0;
+
+    // play on
+    let isPlay = true;
 
     // Reset del container
     gridContainer.innerHTML = '';
@@ -42,13 +56,18 @@ btnPlay.addEventListener('click', function () {
     for (let i = 0; i < 16; i++) {
         let min = 0;
         let max = 100;
-        numGenerator(arrayBombe, min, max )
+        numGenerator(arrayBombe, min, max, numeriClick)
+
     }
 
+    arrayBombe.sort()
+    console.table(arrayBombe)
 
-    console.log(arrayBombe)
+
+    
 
 
+    // Box in base alla selezione di difficoltà
     switch (difficultySel) {
         case 0:
         default:
@@ -67,7 +86,11 @@ btnPlay.addEventListener('click', function () {
             break;
     }
 
-    for (let i = 0; i < numberCell; i++) {
+    // console.log(numeriClick)
+
+
+    // Crea tutti i box
+    for (let i = 1; i < numberCell + 1; i++) {
         const newBox = makeBox();
         newBox.classList.add('box', 'text-white', 'd-flex', 'justify-content-center', 'align-items-center')
 
@@ -77,14 +100,36 @@ btnPlay.addEventListener('click', function () {
             newBox.classList.add('box-h')
         }
 
-        newBox.innerHTML = i + 1;
+        newBox.innerHTML = i;
 
         gridContainer.append(newBox);
 
-        
+        // Evento click sul box
+        newBox.addEventListener('click', function () {
+            if (isPlay) {
 
-        // // click sul box
-        clikElement(newBox, i + 1, arrayBombe, result);
+                if (arrayBombe.includes(i)) {
+                    newBox.classList.add('box-click-bomb')
+                    // console.log('ha preso una bomba gioco finito!')
+                    isPlay = false;
+                    resultUser.innerHTML = ('Hai preso una bomba gioco finito! = ' + result)
+                } else {
+
+                    if (!numeriClick.includes(i)) {
+                        newBox.classList.add('box-click')
+                        console.log('hai cliccato = ' + i)
+                        numeriClick.push(i)
+                        result++;
+                        // console.log(numeriClick)
+                    } else {
+                        resultUser.innerHTML = ('Hai vinto la partita')
+                        // console.log(numeriClick);
+                        
+                    }
+                }
+            }
+
+        })
     }
 
 })
@@ -96,26 +141,11 @@ function makeBox() {
     return makeNewBox;
 }
 
-// funzione click su box
-function clikElement(htmlElement, index, array, somma) {
-    htmlElement.addEventListener('click', function () {
-    
-        console.log(index)
-
-        if (array.includes(index)){
-            htmlElement.classList.add('box-click-bomb')
-        } else {
-            htmlElement.classList.add('box-click')
-            somma++;
-        }
-
-        
-    })
-}
 
 // funzione generazione numero in array
-function numGenerator(array, min, max) {
+function numGenerator(array, min, max, arraypoint) {
     let numberGen;
     numberGen = Math.floor(Math.random() * ((max + 1) - min) + min);
     array.push(numberGen);
+    arraypoint.push(numberGen);
 }
