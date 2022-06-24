@@ -11,21 +11,26 @@
 }
 
 header {
-    height: 10vh;
+    height: 15vh;
     width: 100%;
-    background-color: white;
+    background-color: midnightblue;
 }
 
 main {
-    height: 80vh;
+    height: 70vh;
     width: 100%;
-    background-color: dodgerblue;
+    background-color: midnightblue;
 }
 
 footer {
-    height: 10vh;
+    height: 15vh;
     width: 100%;
-    background-color: white;
+    background-color: midnightblue;
+}
+
+.ms-container{
+    width: 550px;
+    margin: 0 auto;
 }
 
 .grid-container {
@@ -36,27 +41,28 @@ footer {
 
 div.box{
     float: left;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
+    border-radius: 10px;
+    margin: 5px;
+    width: calc(100% / 10 - 10px);
+    height: calc(100% / 10 - 10px);
 }
 
 div.box-st{
-    width: calc(100% / 9);
-    height: calc(100% / 9);
+    width: calc(100% / 9 - 10px);
+    height: calc(100% / 9 - 10px);
 }
 
 div.box-h{
-    width: calc(100% / 7);
-    height: calc(100% / 7);
+    width: calc(100% / 7 - 10px);
+    height: calc(100% / 7 - 10px);
 }
 
-div.box,
-div.grid-container{
+div.box{
     border: 2px solid white;
 }
 
 .box-click{
-    background-color: blue;
+    background-color: green;
     color: white;
 }
 
@@ -64,4 +70,11 @@ div.grid-container{
     background-color: red;
     color: white;
 }
+
+header select{
+    background-color: midnightblue;
+    color: white;
+}
+
+
 

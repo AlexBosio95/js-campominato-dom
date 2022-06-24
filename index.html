@@ -23,19 +23,22 @@
 
 <body>
 
-    <header class="container">
-        <div class="row h-100 align-items-center row-cols-2 ">
-            <div class="col text-center">
-                <h1 class="m-3">Grid Game</h1>
-            </div>
+    <header class="">
+        <div class="ms-container">
+            <div class="row h-100 align-items-center row-cols-1 pt-3">
 
-            <div class="col text-center">
-                <button id="btn-play" class="btn btn-primary">Play Game</button> 
-                <select name="cars" id="sel-difficulty">
-                    <option value="0">Easy</option>
-                    <option value="1">Standard</option>
-                    <option value="2">Hard</option>
-                  </select>
+                <div class="col text-center">
+                    <h1 class="text-white"> <i class="fa-solid fa-grip"></i> Grid Game</h1>
+                </div>
+    
+                <div class="col text-center">
+                    <button id="btn-play" class="btn btn-primary m-3">Play Game</button> 
+                    <select class="m-3 border-0 rounded-2" name="cars" id="sel-difficulty">
+                        <option value="0">Easy</option>
+                        <option value="1">Standard</option>
+                        <option value="2">Hard</option>
+                      </select>
+                </div>
             </div>
         </div>
 
@@ -59,9 +62,9 @@
 
     <footer>
 
-        <div class="container text-center mt-1">
-            <span class="d-inline-block"></span>
-            <h1 id="risultato"></h1>
+        <div class="container text-center">
+            <span id="score" class="d-inline-block text-white"></span>
+            <h1 id="risultato" class="text-white"></h1>
         </div>
 
 

@@ -23,7 +23,7 @@ const gridContainer = document.querySelector('.container .grid-container');
 const resultUser = document.getElementById('risultato');
 
 // Prendo il tag per il risultato
-const scoreUser = document.querySelector('footer span')
+const scoreUser = document.getElementById('score')
 
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
@@ -127,7 +127,8 @@ btnPlay.addEventListener('click', function () {
 
                         // Carica il numero nell'array
                         if ((numeriClick.length == numberCell - 1)) {
-                            resultUser.innerHTML = ('Hai vinto la partita')
+                            resultUser.innerHTML = `${'<i class="fa-solid fa-face-laugh-wink"></i>'} You Winn!`
+                            scoreUser.innerHTML =  `Score =  ${result}`
                             console.log(numeriClick.length);
                             isPlay = false;
                         } else {
