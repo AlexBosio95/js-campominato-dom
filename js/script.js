@@ -19,6 +19,8 @@ const btnPlay = document.querySelector('#btn-play');
 // Prendo il contenitore dei box
 const gridContainer = document.querySelector('.container .grid-container');
 
+// risultato
+let result = 0;
 
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
@@ -29,13 +31,22 @@ btnPlay.addEventListener('click', function () {
     // Prendo selettore difficoltà
     const difficultySel = parseInt(document.querySelector('#sel-difficulty').value);
 
-    console.log(difficultySel)
-
     // variabile numero di celle
     let numberCell;
 
     // variabile numero di righe
     let rowForCell;
+
+
+    // Popolo l'array dove saranno messe le bombe
+    for (let i = 0; i < 16; i++) {
+        let min = 0;
+        let max = 100;
+        numGenerator(arrayBombe, min, max )
+    }
+
+
+    console.log(arrayBombe)
 
 
     switch (difficultySel) {
@@ -51,26 +62,29 @@ btnPlay.addEventListener('click', function () {
             break;
 
         case 2:
-             numberCell = 49;
-             rowForCell = 7;
-             break;
+            numberCell = 49;
+            rowForCell = 7;
+            break;
     }
 
     for (let i = 0; i < numberCell; i++) {
         const newBox = makeBox();
         newBox.classList.add('box', 'text-white', 'd-flex', 'justify-content-center', 'align-items-center')
 
-        if (difficultySel == 1){
+        if (difficultySel == 1) {
             newBox.classList.add('box-st')
-        } else if (difficultySel == 2){
+        } else if (difficultySel == 2) {
             newBox.classList.add('box-h')
         }
 
         newBox.innerHTML = i + 1;
 
         gridContainer.append(newBox);
-        // click sul box
-        clikElement(newBox, i + 1);
+
+        
+
+        // // click sul box
+        clikElement(newBox, i + 1, arrayBombe, result);
     }
 
 })
@@ -83,15 +97,25 @@ function makeBox() {
 }
 
 // funzione click su box
-function clikElement(htmlElement, index) {
+function clikElement(htmlElement, index, array, somma) {
     htmlElement.addEventListener('click', function () {
-        htmlElement.classList.toggle('box-click')
+    
         console.log(index)
+
+        if (array.includes(index)){
+            htmlElement.classList.add('box-click-bomb')
+        } else {
+            htmlElement.classList.add('box-click')
+            somma++;
+        }
+
+        
     })
 }
 
-// funzione generazione numero
+// funzione generazione numero in array
 function numGenerator(array, min, max) {
-    array = Math.floor(Math.random() * (max - min) + min);
-    return array;
+    let numberGen;
+    numberGen = Math.floor(Math.random() * ((max + 1) - min) + min);
+    array.push(numberGen);
 }
