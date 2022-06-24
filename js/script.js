@@ -51,20 +51,7 @@ btnPlay.addEventListener('click', function () {
     // variabile numero di righe
     let rowForCell;
 
-
-    // Popolo l'array dove saranno messe le bombe
-    for (let i = 0; i < 16; i++) {
-        let min = 0;
-        let max = 100;
-        numGenerator(arrayBombe, min, max, numeriClick)
-
-    }
-
-    arrayBombe.sort()
-    console.table(arrayBombe)
-
-
-    
+    let somma = 0;
 
 
     // Box in base alla selezione di difficoltà
@@ -86,6 +73,19 @@ btnPlay.addEventListener('click', function () {
             break;
     }
 
+    console.log(numberCell)
+
+        // Popolo l'array dove saranno messe le bombe
+        for (let i = 0; i < 16; i++) {
+            let min = 1;
+            let max = numberCell;
+            numGenerator(arrayBombe, min, max, numeriClick)
+    
+        }
+    
+        arrayBombe.sort()
+        console.table(arrayBombe)
+
     // console.log(numeriClick)
 
 
@@ -106,28 +106,51 @@ btnPlay.addEventListener('click', function () {
 
         // Evento click sul box
         newBox.addEventListener('click', function () {
+            
+            let somma = 0;
+
             if (isPlay) {
 
-                if (arrayBombe.includes(i)) {
-                    newBox.classList.add('box-click-bomb')
-                    // console.log('ha preso una bomba gioco finito!')
-                    isPlay = false;
-                    resultUser.innerHTML = ('Hai preso una bomba gioco finito! = ' + result)
-                } else {
+                // inpedisce di caricare il numero 2 volte
+                if (!newBox.classList.contains('box-click')) {
 
-                    if (!numeriClick.includes(i)) {
-                        newBox.classList.add('box-click')
-                        console.log('hai cliccato = ' + i)
-                        numeriClick.push(i)
-                        result++;
-                        // console.log(numeriClick)
+                    // se si clicca su una bomba
+                    if (arrayBombe.includes(i)) {
+                        newBox.classList.add('box-click-bomb')
+                        isPlay = false;
+                        resultUser.innerHTML = ('Hai preso una bomba gioco finito! = ' + result)
                     } else {
-                        resultUser.innerHTML = ('Hai vinto la partita')
-                        // console.log(numeriClick);
-                        
+
+                        console.log(numberCell)
+
+                        // Carica il numero nell'array
+                        if ((numeriClick.length == numberCell - 1)) {
+                            resultUser.innerHTML = ('Hai vinto la partita')
+                            console.log(numeriClick.length);
+                        } else {
+                            newBox.classList.add('box-click')
+                            // console.log('hai cliccato = ' + i)
+                            numeriClick.push(i)
+                            result++;
+                            console.log(numeriClick.length)
+
+                        }
                     }
                 }
+
             }
+
+            // console.log(numeriClick)
+
+            // sumArray(numeriClick, somma)
+
+            // for (let i = 0; i < numeriClick.length; i++) {
+            //     somma += numeriClick[i];
+                
+            // }
+
+            // console.log(somma)
+            
 
         })
     }
@@ -147,15 +170,22 @@ function numGenerator(array, min, max, arraypoint) {
     let numberGen;
     let isValid = false;
 
-    while(isValid == false){
+    while (isValid == false) {
 
         numberGen = Math.floor(Math.random() * ((max + 1) - min) + min);
 
-        if (array.includes(numberGen) == false){
+        if (array.includes(numberGen) == false) {
             array.push(numberGen);
             arraypoint.push(numberGen);
             isValid = true
-        } 
+        }
     }
 
+}
+
+// funzione somma array 
+function sumArray(array, sum) {
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
+    }
 }
