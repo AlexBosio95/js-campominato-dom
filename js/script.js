@@ -51,8 +51,6 @@ btnPlay.addEventListener('click', function () {
     // variabile numero di righe
     let rowForCell;
 
-    let somma = 0;
-
 
     // Box in base alla selezione di difficoltà
     switch (difficultySel) {
@@ -75,16 +73,16 @@ btnPlay.addEventListener('click', function () {
 
     console.log(numberCell)
 
-        // Popolo l'array dove saranno messe le bombe
-        for (let i = 0; i < 16; i++) {
-            let min = 1;
-            let max = numberCell;
-            numGenerator(arrayBombe, min, max, numeriClick)
-    
-        }
-    
-        arrayBombe.sort()
-        console.table(arrayBombe)
+    // Popolo l'array dove saranno messe le bombe
+    for (let i = 0; i < 16; i++) {
+        let min = 1;
+        let max = numberCell;
+        numGenerator(arrayBombe, min, max, numeriClick)
+
+    }
+
+    arrayBombe.sort()
+    console.table(arrayBombe)
 
     // console.log(numeriClick)
 
@@ -106,8 +104,6 @@ btnPlay.addEventListener('click', function () {
 
         // Evento click sul box
         newBox.addEventListener('click', function () {
-            
-            let somma = 0;
 
             if (isPlay) {
 
@@ -127,6 +123,7 @@ btnPlay.addEventListener('click', function () {
                         if ((numeriClick.length == numberCell - 1)) {
                             resultUser.innerHTML = ('Hai vinto la partita')
                             console.log(numeriClick.length);
+                            isPlay = false;
                         } else {
                             newBox.classList.add('box-click')
                             // console.log('hai cliccato = ' + i)
@@ -140,17 +137,6 @@ btnPlay.addEventListener('click', function () {
 
             }
 
-            // console.log(numeriClick)
-
-            // sumArray(numeriClick, somma)
-
-            // for (let i = 0; i < numeriClick.length; i++) {
-            //     somma += numeriClick[i];
-                
-            // }
-
-            // console.log(somma)
-            
 
         })
     }
@@ -181,11 +167,4 @@ function numGenerator(array, min, max, arraypoint) {
         }
     }
 
-}
-
-// funzione somma array 
-function sumArray(array, sum) {
-    for (let i = 0; i < array.length; i++) {
-        sum += array[i];
-    }
 }
