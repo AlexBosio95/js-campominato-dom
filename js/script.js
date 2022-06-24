@@ -19,9 +19,11 @@ const btnPlay = document.querySelector('#btn-play');
 // Prendo il contenitore dei box
 const gridContainer = document.querySelector('.container .grid-container');
 
-// Prendo il tag dove scrivere il risultato
+// Prendo il tag dove scrivere win or lost
 const resultUser = document.getElementById('risultato');
 
+// Prendo il tag per il risultato
+const scoreUser = document.querySelector('footer span')
 
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
@@ -32,6 +34,8 @@ btnPlay.addEventListener('click', function () {
 
 
     resultUser.innerHTML = '';
+
+    scoreUser.innerHTML = '';
 
     // risultato
     let result = 0;
@@ -114,7 +118,9 @@ btnPlay.addEventListener('click', function () {
                     if (arrayBombe.includes(i)) {
                         newBox.classList.add('box-click-bomb')
                         isPlay = false;
-                        resultUser.innerHTML = ('Hai preso una bomba gioco finito! = ' + result)
+                        resultUser.innerHTML = `${'<i class="fa-solid fa-bomb"></i>'} You lost!`
+                        scoreUser.innerHTML =  `Score =  ${result}`
+                    
                     } else {
 
                         console.log(numberCell)
