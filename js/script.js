@@ -23,27 +23,39 @@ const gridContainer = document.querySelector('.container .grid-container');
 const resultUser = document.getElementById('risultato');
 
 // Prendo il tag per il risultato
-const scoreUser = document.getElementById('score')
+const scoreUser = document.getElementById('score');
+
+// Prendo il testo che decrive il gioco
+const txtDesc = document.getElementById('text-desc')
 
 // Bottone Play Game (crea la griglia)
 btnPlay.addEventListener('click', function () {
 
+    // Array che contine il box cliccati validi e le bombe generate
     const numeriClick = [];
 
+    // Array che contiene le bombe generate
     const arrayBombe = [];
 
-
+    // reset stringa del risultato
     resultUser.innerHTML = '';
 
+    // reset stringa dei punti
     scoreUser.innerHTML = '';
 
-    // risultato
+    // Inizializza le classi della griglia
+    gridContainer.classList.remove('opacity-50')
+
+    // Nascondo il testo descrizione gioco
+    txtDesc.classList.add('d-none');
+
+    // contatore risultato
     let result = 0;
 
-    // play on
+    // play on (se la partita è acncora valida)
     let isPlay = true;
 
-    // Reset del container
+    // Reset del container griglia
     gridContainer.innerHTML = '';
 
     // Prendo selettore difficoltà
@@ -54,7 +66,6 @@ btnPlay.addEventListener('click', function () {
 
     // variabile numero di righe
     let rowForCell;
-
 
     // Box in base alla selezione di difficoltà
     switch (difficultySel) {
@@ -75,21 +86,16 @@ btnPlay.addEventListener('click', function () {
             break;
     }
 
-    console.log(numberCell)
-
     // Popolo l'array dove saranno messe le bombe
     for (let i = 0; i < 16; i++) {
         let min = 1;
         let max = numberCell;
         numGenerator(arrayBombe, min, max, numeriClick)
-
     }
 
+    // Rappresentazione in console della posizione bombe
     arrayBombe.sort()
     console.table(arrayBombe)
-
-    // console.log(numeriClick)
-
 
     // Crea tutti i box
     for (let i = 1; i < numberCell + 1; i++) {
@@ -102,6 +108,7 @@ btnPlay.addEventListener('click', function () {
             newBox.classList.add('box-h')
         }
 
+        // Rappresentazione di tutti i numeri in griglia
         newBox.innerHTML = i;
 
         gridContainer.append(newBox);
@@ -119,16 +126,15 @@ btnPlay.addEventListener('click', function () {
                         newBox.classList.add('box-click-bomb')
                         isPlay = false;
                         resultUser.innerHTML = `${'<i class="fa-solid fa-bomb"></i>'} You lost!`
-                        scoreUser.innerHTML =  `Score =  ${result}`
+                        scoreUser.innerHTML =  `Score =  ${result} ${'<i class="fa-solid fa-star"></i>'}`
+                        gridContainer.classList.add('opacity-50')
                     
                     } else {
-
-                        console.log(numberCell)
 
                         // Carica il numero nell'array
                         if ((numeriClick.length == numberCell - 1)) {
                             resultUser.innerHTML = `${'<i class="fa-solid fa-face-laugh-wink"></i>'} You Winn!`
-                            scoreUser.innerHTML =  `Score =  ${result}`
+                            scoreUser.innerHTML =  `Score =  ${result} ${'<i class="fa-solid fa-star"></i>'}`
                             console.log(numeriClick.length);
                             isPlay = false;
                         } else {

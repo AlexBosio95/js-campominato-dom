@@ -10,26 +10,26 @@
     clear: both;
 }
 
-header {
+/* header {
     height: 15vh;
     width: 100%;
     background-color: midnightblue;
-}
+} */
 
 main {
-    height: 70vh;
+    height: 100vh;
     width: 100%;
     background-color: midnightblue;
 }
 
-footer {
+/* footer {
     height: 15vh;
     width: 100%;
     background-color: midnightblue;
-}
+} */
 
 .ms-container{
-    width: 550px;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -71,7 +71,7 @@ div.box{
     color: white;
 }
 
-header select{
+main select{
     background-color: midnightblue;
     color: white;
 }

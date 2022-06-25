@@ -18,14 +18,16 @@
 
     <!-- My Style CSS -->
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>Grid game</title>
 </head>
 
 <body>
 
-    <header class="">
+
+    <main class="">
+
         <div class="ms-container">
-            <div class="row h-100 align-items-center row-cols-1 pt-3">
+            <div class="row align-items-center row-cols-1 pt-3">
 
                 <div class="col text-center">
                     <h1 class="text-white"> <i class="fa-solid fa-grip"></i> Grid Game</h1>
@@ -42,33 +44,34 @@
             </div>
         </div>
 
-    </header>
+        <div class="ms-container text-center">
+            <span id="score" class="d-inline-block text-white"></span>
+            <h1 id="risultato" class="text-white"></h1>
+        </div>
 
-    <main class="">
-
-        <div class="container h-100 align-items-center d-flex justify-content-center">
+        <div class="container align-items-center d-flex justify-content-center">
             <!-- contenitore box -->
 
-            <div class="grid-container clearfix">
+            
+            <div class="grid-container clearfix d">
                 <!-- elenco box -->
-
+                <div id="text-desc" class="text-white text-center mt-3">
+                    <h1  class="">Completa il gioco cliccando su tutti i numeri senza toccare le bombe nascoste</h1>
+                    <h1 class="mt-4">Good luck</h1>
+                    <h1 class="text-warning"><i class="fa-solid fa-face-grin-beam-sweat"></i></h1>
+                </div>
+                
             </div>
 
 
         </div>
 
+        
+
 
     </main>
 
-    <footer>
 
-        <div class="container text-center">
-            <span id="score" class="d-inline-block text-white"></span>
-            <h1 id="risultato" class="text-white"></h1>
-        </div>
-
-
-    </footer>
 
 
     <script type="text/javascript" src="./js/script.js"></script>
