@@ -15,6 +15,7 @@
 // Prendo il bottone
 const btnPlay = document.querySelector('#btn-play');
 
+const numberBox = document.getElementById('number-box');
 
 // Prendo il contenitore dei box
 const gridContainer = document.querySelector('.container .grid-container');
@@ -42,6 +43,8 @@ btnPlay.addEventListener('click', function () {
 
     // reset stringa dei punti
     scoreUser.innerHTML = '';
+
+    numberBox.innerHTML = '';
 
     // Inizializza le classi della griglia
     gridContainer.classList.remove('opacity-50')
@@ -97,6 +100,8 @@ btnPlay.addEventListener('click', function () {
     arrayBombe.sort()
     console.table(arrayBombe)
 
+    numberBox.innerHTML = ('<i class="fa-solid fa-table-cells-large"></i>' + ' N° ' + numberCell)
+
     // Crea tutti i box
     for (let i = 1; i < numberCell + 1; i++) {
         const newBox = makeBox();
@@ -128,7 +133,7 @@ btnPlay.addEventListener('click', function () {
                         resultUser.innerHTML = `${'<i class="fa-solid fa-bomb"></i>'} You lost!`
                         scoreUser.innerHTML =  `Score =  ${result} ${'<i class="fa-solid fa-star"></i>'}`
                         gridContainer.classList.add('opacity-50')
-                    
+
                     } else {
 
                         // Carica il numero nell'array
